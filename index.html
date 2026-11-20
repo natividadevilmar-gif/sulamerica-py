@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="mark.png">
+<title>Sul América Insumos Agrícolas</title>
+<meta name="description" content="Fertilizantes, semillas, protección de cultivos y asesoría técnica para el productor paraguayo y el mercado mundial.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..900&family=Roboto:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a field seen from the road. Sky-to-soil hero with crop rows, then sections that alternate open field (light) and dense canopy (deep green). Single light look by design: the brand mark needs a light ground. */
+:root{
+  --vino:#86212F;        /* SA mark, headlines */
+  --vino-osc:#5F1520;
+  --verde:#1F5B33;       /* wordmark, canopy bands */
+  --verde-osc:#123A20;
+  --brote:#7FB04A;       /* young leaf, small highlights */
+  --trigo:#D9A93B;       /* ripe grain, the single warm accent */
+  --tierra:#F5F2EA;      /* page ground: light soil */
+  --paja:#ECE6D6;
+  --tinta:#1F2420;
+  --tinta-2:#4F574F;
+  --linea:#D8D1BF;
+  --blanco:#FFFFFF;
+  --f-display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --f-body:"Roboto",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --max:1180px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--tierra);color:var(--tinta);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--blanco)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--trigo);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--max);margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);font-stretch:78%;font-weight:850;line-height:1.02;letter-spacing:-.01em;text-wrap:balance;margin:0}
+h2{font-size:clamp(2rem,4.4vw,3.3rem);color:var(--vino)}
+h3{font-size:1.45rem;font-stretch:85%;font-weight:800}
+p{margin:0}
+.eyebrow{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--verde);display:inline-flex;align-items:center;gap:.6em}
+.eyebrow::before{content:"";width:22px;height:2px;background:currentColor}
+.lead{font-size:1.15rem;color:var(--tinta-2);max-width:60ch}
+
+/* Placeholder marker: content to be confirmed by the client */
+.ph{background:linear-gradient(transparent 60%,rgba(217,169,59,.45) 60%);border-bottom:1px dashed var(--trigo)}
+.aviso{background:var(--trigo);color:#2B2206;font-size:.85rem}
+.aviso .wrap{padding-block:8px;display:flex;gap:.5em;flex-wrap:wrap;align-items:center;justify-content:center;text-align:center}
+.aviso b{font-family:var(--f-mono);letter-spacing:.06em}
+
+/* Header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(255,255,255,.96);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid var(--linea)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:12px}
+.brand img{display:block;height:46px;width:auto}
+nav.menu{display:flex;gap:6px;align-items:center}
+nav.menu a{text-decoration:none;font-weight:500;font-size:.95rem;padding:8px 12px;border-radius:6px;color:var(--tinta)}
+nav.menu a:hover{background:var(--paja)}
+nav.menu a.cta{background:var(--vino);color:var(--blanco);font-weight:700}
+nav.menu a.cta:hover{background:var(--vino-osc)}
+.burger{display:none;background:none;border:1px solid var(--linea);border-radius:8px;padding:9px 11px;font:inherit;font-weight:700;color:var(--verde);cursor:pointer}
+@media (max-width:900px){
+  .burger{display:block}
+  nav.menu{position:absolute;left:0;right:0;top:100%;background:var(--blanco);flex-direction:column;align-items:stretch;padding:10px max(20px,env(safe-area-inset-right,0px)) 18px max(20px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--linea);box-shadow:0 12px 24px rgba(0,0,0,.08)}
+  nav.menu[data-open="false"]{display:none}
+  nav.menu a{padding:12px}
+  .brand img{height:38px}
+}
+
+/* Hero: headline on deep canopy green, then the season told in three photos: siembra, cultivo, cosecha */
+.hero{position:relative;color:#FFFFFF;background:var(--verde-osc) url("hero-fondo.jpg") center 58%/cover no-repeat}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,26,14,.88) 0%,rgba(10,26,14,.66) 45%,rgba(10,26,14,.25) 100%),linear-gradient(0deg,rgba(18,58,32,1) 0%,rgba(18,58,32,0) 22%)}
+.ciclo-band{background:var(--verde-osc)}
+.ciclo-band .wrap{padding-block:8px 56px}
+.hero .wrap{position:relative;z-index:1;padding-block:96px 88px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end}
+.hero .eyebrow{color:#E9D08A}
+.hero h1{text-shadow:0 2px 20px rgba(0,0,0,.4);font-size:clamp(2.6rem,6vw,5.2rem);color:#FFFFFF;max-width:13ch}
+.hero h1 em{font-style:normal;color:var(--trigo)}
+.hero .lead{margin-top:20px;color:#DCE7D6;max-width:54ch}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:.5em;text-decoration:none;font-weight:700;padding:14px 22px;border-radius:8px;border:2px solid transparent;font-size:1rem;cursor:pointer;font-family:var(--f-body)}
+.btn-vino{background:var(--vino);color:var(--blanco)}
+.btn-vino:hover{background:var(--vino-osc)}
+.btn-linea{border-color:var(--verde);color:var(--verde);background:rgba(255,255,255,.6)}
+.btn-linea:hover{background:var(--verde);color:var(--blanco)}
+.hero .btn-linea{border-color:#FFFFFF;color:#FFFFFF;background:transparent}
+.hero .btn-linea:hover{background:#FFFFFF;color:var(--verde-osc)}
+.ciclo{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;min-width:0}
+.ciclo figure{margin:0;position:relative;height:clamp(260px,34vw,440px);overflow:hidden;min-width:0;border-radius:12px}
+
+.ciclo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease}
+.ciclo figure:hover img{transform:scale(1.04)}
+.ciclo figcaption{position:absolute;left:0;right:0;bottom:0;padding:48px 14px 16px;background:linear-gradient(0deg,rgba(10,26,14,.85),rgba(10,26,14,0));color:#FFFFFF;display:grid;gap:2px}
+.ciclo figcaption small{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;color:#E9D08A;text-transform:uppercase}
+.ciclo figcaption b{font-family:var(--f-display);font-stretch:80%;font-weight:850;font-size:clamp(1rem,2.2vw,1.6rem);line-height:1.05}
+.ciclo figcaption span{font-size:.9rem;color:#DCE7D6}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-block:56px 48px}.hero .temporada{justify-self:start}.hero{background-position:22% 60%}.hero::before{background:linear-gradient(180deg,rgba(10,26,14,.8),rgba(10,26,14,.6) 55%,rgba(18,58,32,1) 100%)}}
+@media (max-width:640px){.ciclo figure{height:clamp(240px,70vw,340px)}}
+@media (max-width:640px){.ciclo figcaption{padding:36px 10px 12px}.ciclo figcaption span{display:none}.ciclo figcaption small{font-size:.62rem;letter-spacing:.06em}}
+.temporada{background:var(--blanco);color:var(--tinta);border-radius:10px;padding:14px 18px;box-shadow:0 10px 30px rgba(0,0,0,.25);font-size:.85rem;display:grid;gap:2px;justify-self:end}
+.temporada b{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;color:var(--verde);text-transform:uppercase}
+.temporada span{font-family:var(--f-display);font-stretch:80%;font-weight:800;font-size:1.25rem;color:var(--vino)}
+
+
+/* Strip of figures */
+.cifras{background:var(--verde-osc);color:var(--blanco)}
+.cifras .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding-block:34px}
+.cifra{display:grid;gap:4px;border-left:2px solid var(--brote);padding-left:16px}
+.cifra strong{font-family:var(--f-display);font-stretch:75%;font-size:2.4rem;line-height:1;font-weight:900;font-variant-numeric:tabular-nums}
+.cifra span{font-size:.9rem;color:#C9DCC4}
+@media (max-width:760px){.cifras .wrap{grid-template-columns:repeat(2,1fr)}}
+
+section{padding-block:88px}
+.sec-head{display:grid;gap:14px;margin-bottom:44px}
+
+/* About */
+.nosotros .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.nosotros p+p{margin-top:16px}
+.pilares{display:grid;gap:14px;margin-top:28px}
+.pilar{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.pilar svg{width:44px;height:44px}
+.pilar b{display:block;color:var(--verde)}
+.pilar p{color:var(--tinta-2);font-size:.97rem}
+.lamina{background:var(--verde);border-radius:14px;overflow:hidden;position:relative;aspect-ratio:4/5;max-width:100%}
+.lamina svg{position:absolute;inset:0;width:100%;height:100%}
+.lamina figcaption{position:absolute;left:20px;right:20px;bottom:20px;color:var(--blanco);font-size:.9rem;background:rgba(18,58,32,.82);padding:12px 14px;border-radius:8px}
+@media (max-width:860px){.nosotros .grid{grid-template-columns:1fr}.lamina{aspect-ratio:16/10}}
+
+/* Solutions */
+.soluciones{background:var(--blanco);border-block:1px solid var(--linea)}
+.sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--linea)}
+.sol-item{padding:30px 28px 34px;border-bottom:1px solid var(--linea);border-right:1px solid var(--linea);display:grid;gap:12px;align-content:start;min-width:0}
+.sol-item:nth-child(3n){border-right:0}
+.sol-item .ico{width:52px;height:52px;border-radius:12px;background:var(--paja);display:grid;place-items:center}
+.sol-item .ico svg{width:30px;height:30px}
+.sol-item h3{color:var(--vino)}
+.sol-item p{color:var(--tinta-2);font-size:.97rem}
+.sol-item ul{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.sol-item li{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.04em;padding:4px 8px;border-radius:4px;background:#EEF4E8;color:var(--verde)}
+@media (max-width:960px){.sol-grid{grid-template-columns:repeat(2,1fr)}.sol-item:nth-child(3n){border-right:1px solid var(--linea)}.sol-item:nth-child(2n){border-right:0}}
+@media (max-width:600px){.sol-grid{grid-template-columns:1fr}.sol-item{border-right:0!important;padding-inline:4px}}
+
+/* Crop calendar */
+.cultivos .tabla{overflow-x:auto;border:1px solid var(--linea);border-radius:12px;background:var(--blanco)}
+.cal{border-collapse:collapse;width:100%;min-width:760px;font-size:.92rem}
+.cal th,.cal td{padding:12px 10px;text-align:center;border-bottom:1px solid #EEE8DA}
+.cal thead th{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;color:var(--tinta-2);font-weight:500;background:#FAF8F2}
+.cal tbody th{text-align:left;font-weight:700;color:var(--verde);white-space:nowrap;padding-left:18px}
+.cal tr:last-child td,.cal tr:last-child th{border-bottom:0}
+.cal td i{display:block;height:14px;border-radius:3px}
+.s{background:var(--brote)} .c{background:var(--trigo)}
+.leyenda{display:flex;flex-wrap:wrap;gap:18px;margin-top:14px;font-size:.88rem;color:var(--tinta-2)}
+.leyenda span{display:inline-flex;align-items:center;gap:8px}
+.leyenda i{width:22px;height:10px;border-radius:2px;display:inline-block}
+
+/* Presence */
+.presencia{background:var(--verde);color:var(--blanco);position:relative;overflow:hidden}
+.presencia h2{color:var(--blanco)}
+.presencia .eyebrow{color:#BFE09A}
+.presencia .lead{color:#D9E8D3}
+.pres-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center}
+.paises{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:28px;padding:0;list-style:none}
+.paises li{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:12px 14px;display:flex;justify-content:space-between;gap:10px;font-weight:500}
+.paises small{font-family:var(--f-mono);font-size:.72rem;color:#BFE09A;align-self:center}
+.pres-bloques{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+.pres-bloque{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:16px;display:grid;gap:4px;align-content:start;min-width:0}
+.pres-bloque small{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#BFE09A}
+.pres-bloque b{font-size:1.05rem}
+.pres-bloque p{color:#D9E8D3;font-size:.95rem}
+.presencia .ph{background:linear-gradient(transparent 60%,rgba(217,169,59,.35) 60%)}
+@media (max-width:520px){.pres-bloques{grid-template-columns:1fr}}
+.mapa{max-width:440px;width:100%;margin-inline:auto}
+.mapa svg{width:100%;height:auto;display:block}
+@media (max-width:860px){.pres-grid{grid-template-columns:1fr}.mapa{max-width:280px;order:-1}}
+
+/* Contact */
+.contacto .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px}
+.canales{display:grid;gap:12px;margin-top:26px}
+.canal{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;background:var(--blanco);border:1px solid var(--linea);border-radius:10px;padding:14px 16px}
+.canal small{display:block;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta-2)}
+.canal b{font-size:1.05rem;user-select:all}
+.canal svg{width:28px;height:28px}
+form.form{background:var(--blanco);border:1px solid var(--linea);border-radius:14px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.campo-f{display:grid;gap:6px;min-width:0}
+.campo-f.full{grid-column:1/-1}
+label{font-weight:500;font-size:.92rem}
+input,select,textarea{font:inherit;font-size:1rem;padding:12px 14px;border:1px solid #CFC7B3;border-radius:8px;background:#FDFCF8;color:var(--tinta);width:100%}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--verde);outline-offset:1px;border-color:var(--verde)}
+.ok{grid-column:1/-1;background:#EEF4E8;color:var(--verde-osc);border-radius:8px;padding:12px 14px;font-weight:500}
+@media (max-width:860px){.contacto .grid{grid-template-columns:1fr}}
+@media (max-width:520px){form.form{grid-template-columns:1fr;padding:20px}}
+
+footer{background:var(--vino-osc);color:#EBD3D6;font-size:.92rem}
+footer .wrap{padding-block:44px 36px;display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:start}
+footer .sello{background:var(--blanco);border-radius:10px;padding:10px 14px;display:inline-block}
+footer .sello img{height:40px;display:block}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 22px}
+footer nav a{text-decoration:none}
+footer nav a:hover{text-decoration:underline}
+footer .legal{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.15);padding-top:18px;font-size:.82rem;color:#C9A9AE}
+@media (max-width:760px){footer .wrap{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="aviso" role="note"><div class="wrap"><b>VISTA PREVIA</b> Los textos <span class="ph">resaltados en amarillo</span> son ejemplos y se reemplazarán por la información real de la empresa.</div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Sul América Insumos Agrícolas, inicio"><img src="logo-full.png" alt="Sul América Insumos Agrícolas"></a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Menú</button>
+    <nav class="menu" id="menu" data-open="false">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#soluciones">Soluciones</a>
+      <a href="#cultivos">Cultivos</a>
+      <a href="#presencia">Presencia</a>
+      <a class="cta" href="#contacto">Hable con un asesor</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+<div class="hero" role="img" aria-label="Siembra, cultivo de soja y cosecha en el campo">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Siembra e insumos · Paraguay</span>
+      <h1 style="margin-top:16px">Insumos para una <em>siembra que rinde</em></h1>
+      <p class="lead">Semillas, fertilizantes y protección de cultivos para cada etapa del plantío, con asesoría técnica en el lote desde la preparación del suelo hasta la cosecha.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-vino" href="#soluciones">Ver soluciones</a>
+        <a class="btn btn-linea" href="#contacto">Solicitar cotización</a>
+      </div>
+    </div>
+    <div class="temporada" aria-label="Campaña en curso">
+      <b>Campaña en curso</b>
+      <span>Zafra 2026/27</span>
+      <small>Siembra de soja y maíz de primera</small>
+    </div>
+  </div>
+</div>
+
+<div class="ciclo-band">
+  <div class="wrap">
+    <div class="ciclo">
+      <figure><img src="foto-siembra.jpg" alt="Sembradora trabajando entre surcos recién nacidos"><figcaption><small>1 · Siembra</small><b>Semilla y fertilizante</b><span>El arranque define la campaña.</span></figcaption></figure>
+      <figure><img src="foto-cultivo.jpg" alt="Plantación de soja en pleno desarrollo"><figcaption><small>2 · Cultivo</small><b>Nutrición y protección</b><span>Técnicos en el lote.</span></figcaption></figure>
+      <figure><img src="foto-cosecha.jpg" alt="Cosechadora en un campo de soja madura"><figcaption><small>3 · Cosecha</small><b>Rinde en la bolsa</b><span>Del campo paraguayo al mundo.</span></figcaption></figure>
+    </div>
+  </div>
+</div>
+
+<div class="cifras">
+  <div class="wrap">
+    <div class="cifra"><strong class="ph">+15</strong><span>años en el campo</span></div>
+    <div class="cifra"><strong>PY</strong><span>sede y operación en Paraguay</span></div>
+    <div class="cifra"><strong>Toda escala</strong><span>de la chacra familiar a la gran operación de granos</span></div>
+    <div class="cifra"><strong class="ph">4</strong><span>continentes de exportación</span></div>
+  </div>
+</div>
+
+<section class="nosotros" id="nosotros">
+  <div class="wrap grid">
+    <div>
+      <div class="sec-head">
+        <span class="eyebrow">Quiénes somos</span>
+        <h2>Conocemos el campo porque trabajamos en él</h2>
+      </div>
+      <p class="lead">Sul América Insumos Agrícolas acerca al productor paraguayo los insumos que necesita en cada etapa del ciclo, con logística propia y técnicos que recorren los lotes.</p>
+      <p class="ph" style="margin-top:16px">Nacimos en <b>[ciudad], Paraguay,</b> en <b>[año]</b> y hoy atendemos desde pequeñas chacras familiares hasta grandes operaciones de granos.</p>
+      <div class="pilares">
+        <div class="pilar">
+          <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#EEF4E8"/><path d="M22 33V19M22 24c-6 0-9-4-9-9 5 0 9 3 9 9Zm0-3c0-6 4-9 9-9 0 6-4 9-9 9Z" fill="#7FB04A" stroke="#1F5B33" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <div><b>Agronomía en el lote</b><p>Diagnóstico de suelo, recomendación de dosis y seguimiento del cultivo hasta la cosecha.</p></div>
+        </div>
+        <div class="pilar">
+          <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#F5EBD3"/><path d="M10 28h18v-9h-6l-3-4h-9Zm18-5h4l3 4v1h-7M14 31a2.5 2.5 0 1 0 0-.1M30 31a2.5 2.5 0 1 0 0-.1" fill="none" stroke="#86212F" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          <div><b>Entrega en la época justa</b><p>El insumo llega antes de la ventana de siembra o aplicación, no después.</p></div>
+        </div>
+        <div class="pilar">
+          <svg viewBox="0 0 44 44" aria-hidden="true"><circle cx="22" cy="22" r="21" fill="#EEF4E8"/><path d="M13 30l6-7 5 4 7-10" fill="none" stroke="#1F5B33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31" cy="17" r="2.5" fill="#D9A93B"/></svg>
+          <div><b>Resultado medido en bolsas por hectárea</b><p>Acompañamos el rendimiento de cada campaña para ajustar la siguiente.</p></div>
+        </div>
+      </div>
+    </div>
+    <figure class="lamina" style="margin:0">
+      <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect width="400" height="500" fill="#1F5B33"/>
+        <g id="planta">
+          <path d="M0 0v-210" stroke="#7FB04A" stroke-width="4"/>
+          <path d="M0-60c-40-6-62-30-66-58 34 2 60 22 66 58Z" fill="#7FB04A"/>
+          <path d="M0-100c40-6 62-30 66-58-34 2-60 22-66 58Z" fill="#9CC765"/>
+          <path d="M0-145c-34-6-52-26-56-50 28 2 50 18 56 50Z" fill="#7FB04A"/>
+          <path d="M0-180c30-6 46-22 50-44-26 2-44 16-50 44Z" fill="#9CC765"/>
+          <ellipse cx="0" cy="-214" rx="9" ry="16" fill="#D9A93B"/>
+        </g>
+        <g opacity=".95"><use href="#planta" transform="translate(200 470)"/></g>
+        <g opacity=".45"><use href="#planta" transform="translate(70 430) scale(.7)"/><use href="#planta" transform="translate(330 430) scale(.7)"/></g>
+        <g opacity=".25"><use href="#planta" transform="translate(130 360) scale(.45)"/><use href="#planta" transform="translate(270 360) scale(.45)"/></g>
+        <rect y="440" width="400" height="60" fill="#5B3A22"/>
+        <path d="M0 450h400M0 466h400M0 482h400" stroke="#7A5233" stroke-width="3"/>
+      </svg>
+      <figcaption><span class="ph">Espacio para foto real de un lote o del equipo técnico en campo.</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="soluciones" id="soluciones">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Soluciones</span>
+      <h2>Todo lo que el cultivo pide, en un solo proveedor</h2>
+      <p class="lead">Líneas de producto organizadas por etapa del ciclo. <span class="ph">Las marcas y productos específicos se completarán con el catálogo de la empresa.</span></p>
+    </div>
+    <div class="sol-grid">
+      <article class="sol-item">
+        <div class="ico"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M7 9h16l-2 17H9Z" fill="#ECE6D6" stroke="#86212F" stroke-width="1.8" stroke-linejoin="round"/><path d="M10 9V6h10v3" fill="none" stroke="#86212F" stroke-width="1.8"/><text x="15" y="21" text-anchor="middle" font-size="7" font-weight="700" fill="#86212F" font-family="Arial">NPK</text></svg></div>
+        <h3>Fertilizantes</h3>
+        <p>Nutrición de base y cobertura para granos, pasturas y cultivos intensivos.</p>
+        <ul><li>NPK</li><li>Urea</li><li>MAP · DAP</li><li>KCl</li></ul>
+      </article>
+      <article class="sol-item">
+        <div class="ico"><svg viewBox="0 0 30 30" aria-hidden="true"><ellipse cx="11" cy="17" rx="5" ry="7" fill="#D9A93B" transform="rotate(-20 11 17)"/><ellipse cx="20" cy="14" rx="5" ry="7" fill="#7FB04A" transform="rotate(15 20 14)"/></svg></div>
+        <h3>Semillas</h3>
+        <p>Genética adaptada a cada región y época de siembra, con soporte en la elección de híbridos.</p>
+        <ul><li>Soja</li><li>Maíz</li><li>Trigo</li><li>Sorgo</li></ul>
+      </article>
+      <article class="sol-item">
+        <div class="ico"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M15 4l9 4v6c0 6-4 10-9 12-5-2-9-6-9-12V8Z" fill="#EEF4E8" stroke="#1F5B33" stroke-width="1.8" stroke-linejoin="round"/><path d="M15 20v-7m0 3c-3 0-4-2-4-4 2 0 4 1 4 4Z" fill="#7FB04A" stroke="#1F5B33" stroke-width="1.2"/></svg></div>
+        <h3>Protección de cultivos</h3>
+        <p>Herbicidas, fungicidas e insecticidas con recomendación técnica y uso responsable.</p>
+        <ul><li>Herbicidas</li><li>Fungicidas</li><li>Insecticidas</li></ul>
+      </article>
+      <article class="sol-item">
+        <div class="ico"><svg viewBox="0 0 30 30" aria-hidden="true"><path d="M15 5c4 6 7 9 7 13a7 7 0 0 1-14 0c0-4 3-7 7-13Z" fill="#9CC765" stroke="#1F5B33" stroke-width="1.8"/></svg></div>
+        <h3>Nutrición foliar y bioinsumos</h3>
+        <p>Micronutrientes, bioestimulantes e inoculantes para cerrar la brecha de rendimiento.</p>
+        <ul><li>Micronutrientes</li><li>Inoculantes</li><li>Bioestimulantes</li></ul>
+      </article>
+      <article class="sol-item">
+        <div class="ico"><svg viewBox="0 0 30 30" aria-hidden="true"><rect x="5" y="17" width="20" height="8" rx="1" fill="#5B3A22"/><path d="M5 20h20" stroke="#7A5233" stroke-width="1.5"/><path d="M15 6v13" stroke="#86212F" stroke-width="2"/><circle cx="15" cy="7" r="3" fill="#86212F"/></svg></div>
+        <h3>Corrección de suelo</h3>
+        <p>Calcáreo, yeso agrícola y enmiendas para preparar el perfil antes de sembrar.</p>
+        <ul><li>Calcáreo</li><li>Yeso</li><li>Análisis de suelo</li></ul>
+      </article>
+      <article class="sol-item">
+        <div class="ico"><svg viewBox="0 0 30 30" aria-hidden="true"><circle cx="12" cy="11" r="4" fill="#ECE6D6" stroke="#86212F" stroke-width="1.8"/><path d="M5 25c0-4 3-7 7-7s7 3 7 7" fill="none" stroke="#86212F" stroke-width="1.8"/><path d="M19 9l2 2 4-4" fill="none" stroke="#1F5B33" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Asesoría técnica</h3>
+        <p>Ingenieros agrónomos que visitan el lote, monitorean plagas y ajustan el plan de la campaña.</p>
+        <ul><li>Monitoreo</li><li>Plan de campaña</li><li>Capacitación</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="cultivos" id="cultivos">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Cultivos</span>
+      <h2>Acompañamos cada cultivo en su calendario</h2>
+      <p class="lead">Calendario de referencia para Paraguay. <span class="ph">Las ventanas exactas se ajustarán a cada región del país.</span></p>
+    </div>
+    <div class="tabla" tabindex="0" aria-label="Calendario de siembra y cosecha">
+      <table class="cal">
+        <thead><tr><th scope="col" style="text-align:left;padding-left:18px">Cultivo</th><th>JUL</th><th>AGO</th><th>SEP</th><th>OCT</th><th>NOV</th><th>DIC</th><th>ENE</th><th>FEB</th><th>MAR</th><th>ABR</th><th>MAY</th><th>JUN</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Soja</th><td></td><td></td><td><i class="s"></i></td><td><i class="s"></i></td><td><i class="s"></i></td><td><i class="s"></i></td><td></td><td><i class="c"></i></td><td><i class="c"></i></td><td><i class="c"></i></td><td></td><td></td></tr>
+          <tr><th scope="row">Maíz</th><td></td><td><i class="s"></i></td><td><i class="s"></i></td><td><i class="s"></i></td><td><i class="s"></i></td><td></td><td></td><td><i class="c"></i></td><td><i class="c"></i></td><td><i class="c"></i></td><td><i class="c"></i></td><td></td></tr>
+          <tr><th scope="row">Trigo</th><td></td><td></td><td></td><td></td><td><i class="c"></i></td><td><i class="c"></i></td><td></td><td></td><td></td><td></td><td><i class="s"></i></td><td><i class="s"></i></td></tr>
+          <tr><th scope="row">Arroz</th><td></td><td></td><td><i class="s"></i></td><td><i class="s"></i></td><td><i class="s"></i></td><td></td><td></td><td><i class="c"></i></td><td><i class="c"></i></td><td><i class="c"></i></td><td></td><td></td></tr>
+          <tr><th scope="row">Girasol</th><td></td><td><i class="s"></i></td><td><i class="s"></i></td><td><i class="s"></i></td><td></td><td><i class="c"></i></td><td><i class="c"></i></td><td><i class="c"></i></td><td></td><td></td><td></td><td></td></tr>
+          <tr><th scope="row">Pasturas</th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><i class="s"></i></td><td><i class="s"></i></td><td><i class="s"></i></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="leyenda"><span><i class="s"></i>Siembra</span><span><i class="c"></i>Cosecha</span></div>
+  </div>
+</section>
+
+<section class="presencia" id="presencia">
+  <div class="wrap pres-grid">
+    <div>
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="eyebrow">Presencia</span>
+        <h2>Desde Paraguay hacia el mundo</h2>
+        <p class="lead">Operamos en Paraguay, al lado del productor, y llevamos la producción del campo paraguayo a compradores de los principales mercados internacionales.</p>
+      </div>
+      <div class="pres-bloques">
+        <div class="pres-bloque">
+          <small>Operación en Paraguay</small>
+          <b>Sede, depósitos y equipo técnico</b>
+          <p><span class="ph">Alto Paraná · Itapúa · Canindeyú · Caaguazú</span></p>
+        </div>
+        <div class="pres-bloque">
+          <small>Exportación</small>
+          <b>Granos para el mercado mundial</b>
+          <p><span class="ph">Soja, maíz y trigo con destino a Europa, Asia, Medio Oriente y las Américas</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="mapa">
+      <svg viewBox="0 0 420 360" role="img" aria-label="Paraguay conectado con mercados de Europa, Asia, Medio Oriente y las Américas">
+        <circle cx="210" cy="180" r="160" fill="#2E7A44" stroke="#9CC765" stroke-width="1.5"/>
+        <g fill="none" stroke="#9CC765" stroke-opacity=".35" stroke-width="1">
+          <ellipse cx="210" cy="180" rx="160" ry="55"/><ellipse cx="210" cy="180" rx="160" ry="110"/>
+          <ellipse cx="210" cy="180" rx="55" ry="160"/><ellipse cx="210" cy="180" rx="110" ry="160"/>
+          <path d="M50 180h320M210 20v320"/>
+        </g>
+        <g fill="none" stroke="#D9A93B" stroke-width="2.2" stroke-dasharray="6 5" stroke-linecap="round">
+          <path d="M150 250 Q 190 120 268 92"/>
+          <path d="M150 250 Q 260 200 330 140"/>
+          <path d="M150 250 Q 250 260 318 226"/>
+          <path d="M150 250 Q 100 160 130 92"/>
+        </g>
+        <g fill="#ECE6D6"><circle cx="268" cy="92" r="6"/><circle cx="330" cy="140" r="6"/><circle cx="318" cy="226" r="6"/><circle cx="130" cy="92" r="6"/></g>
+        <g font-family="IBM Plex Mono, monospace" font-size="12" fill="#FFFFFF">
+          <text x="268" y="76" text-anchor="middle">EUROPA</text>
+          <text x="352" y="130" text-anchor="middle">ASIA</text>
+          <text x="318" y="256" text-anchor="middle">MEDIO ORIENTE</text>
+          <text x="130" y="76" text-anchor="middle">AMÉRICAS</text>
+        </g>
+        <circle cx="150" cy="250" r="20" fill="none" stroke="#D9A93B" stroke-width="2" opacity=".55"/>
+        <circle cx="150" cy="250" r="10" fill="#D9A93B" stroke="#123A20" stroke-width="2.5"/>
+        <rect x="88" y="278" width="124" height="28" rx="6" fill="#86212F"/>
+        <text x="150" y="297" text-anchor="middle" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="15" fill="#FFFFFF">PARAGUAY</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="contacto" id="contacto">
+  <div class="wrap grid">
+    <div>
+      <div class="sec-head" style="margin-bottom:0">
+        <span class="eyebrow">Contacto</span>
+        <h2>Planifiquemos su próxima campaña</h2>
+        <p class="lead">Cuéntenos qué cultivo, cuántas hectáreas y en qué región. Compradores internacionales también pueden escribirnos. Un asesor le responde con una propuesta.</p>
+      </div>
+      <div class="canales">
+        <div class="canal"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#1F5B33"/><path d="M9 19l1-3a6 6 0 1 1 2 2Z" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg><div><small>WhatsApp</small><b class="ph">+595 000 000 000</b></div></div>
+        <div class="canal"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#86212F"/><path d="M8 10h12v9H8Zm0 0l6 5 6-5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg><div><small>Correo</small><b class="ph">ventas@empresa.com</b></div></div>
+        <div class="canal"><svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="13" fill="#D9A93B"/><path d="M14 7a5 5 0 0 1 5 5c0 4-5 9-5 9s-5-5-5-9a5 5 0 0 1 5-5Z" fill="none" stroke="#fff" stroke-width="1.6"/><circle cx="14" cy="12" r="1.8" fill="#fff"/></svg><div><small>Oficina</small><b class="ph">Dirección, ciudad, Paraguay</b></div></div>
+      </div>
+    </div>
+    <form class="form" id="form" novalidate>
+      <div class="campo-f"><label for="f-nombre">Nombre</label><input id="f-nombre" name="nombre" autocomplete="name" placeholder="Juan Pérez" required></div>
+      <div class="campo-f"><label for="f-tel">WhatsApp o teléfono</label><input id="f-tel" name="tel" type="tel" autocomplete="tel" placeholder="+595 ..."></div>
+      <div class="campo-f"><label for="f-pais">Ubicación</label>
+        <select id="f-pais" name="pais"><option>Paraguay</option><option>Otro país (exportación)</option></select></div>
+      <div class="campo-f"><label for="f-ha">Hectáreas</label><input id="f-ha" name="ha" inputmode="numeric" placeholder="Ej.: 350"></div>
+      <div class="campo-f full"><label for="f-cultivo">Cultivo principal</label>
+        <select id="f-cultivo" name="cultivo"><option>Soja</option><option>Maíz</option><option>Trigo</option><option>Arroz</option><option>Girasol</option><option>Pasturas</option><option>Otro</option></select></div>
+      <div class="campo-f full"><label for="f-msg">¿Qué necesita?</label><textarea id="f-msg" name="msg" placeholder="Ej.: fertilización de base para soja de primera, siembra en octubre."></textarea></div>
+      <div class="campo-f full"><button class="btn btn-vino" type="submit" style="justify-content:center">Enviar consulta</button></div>
+      <p class="ok" id="ok" hidden>Formulario de demostración: en el sitio final esta consulta llegará al correo o WhatsApp de ventas.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="sello"><img src="logo-full.png" alt="Sul América Insumos Agrícolas"></span>
+    <nav aria-label="Pie de página"><a href="#nosotros">Nosotros</a><a href="#soluciones">Soluciones</a><a href="#cultivos">Cultivos</a><a href="#presencia">Presencia</a><a href="#contacto">Contacto</a></nav>
+    <span class="ph" style="background:none">Instagram · Facebook · LinkedIn</span>
+    <p class="legal">© 2026 Sul América Insumos Agrícolas. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var b=document.getElementById('burger'),m=document.getElementById('menu');
+  b.addEventListener('click',function(){var o=m.dataset.open==='true';m.dataset.open=String(!o);b.setAttribute('aria-expanded',String(!o));});
+  m.addEventListener('click',function(e){if(e.target.tagName==='A'&&window.innerWidth<=900){m.dataset.open='false';b.setAttribute('aria-expanded','false');}});
+  document.getElementById('form').addEventListener('submit',function(e){e.preventDefault();document.getElementById('ok').hidden=false;});
+})();
+</script>
+</body>
+</html>
